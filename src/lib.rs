@@ -2,6 +2,9 @@ use std::io::{self, BufReader, BufWriter, SeekFrom, prelude::*};
 use std::net::{ToSocketAddrs, TcpStream, TcpListener};
 use std::convert::TryInto;
 
+#[cfg(test)]
+mod tests;
+
 const OPERATION_READ: u8 = 0xFF;
 const OPERATION_SEEK: u8 = 0xFE;
 
@@ -128,6 +131,8 @@ impl Read for NetworkReader {
         self.0.write_all(&[OPERATION_READ])?;
         self.0.write_all(&(buf.len() as u64).to_be_bytes())?;
         
+        self.0.read_exact(buf)?;
+
         let mut buf = [0u8; 8];
         self.0.read_exact(&mut buf)?;
 
