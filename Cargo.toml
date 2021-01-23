@@ -1,9 +1,13 @@
 [package]
-name = "network-reader"
+name = "network-reader-adapter"
 version = "0.1.0"
 authors = ["jam1garner <8260240+jam1garner@users.noreply.github.com>"]
 edition = "2018"
+license = "MIT"
+description = "A client/server protocol for using `io::Read` and `io::Seek` over a network"
+readme = "README.md"
+documentation = "https://docs.rs/network-reader-adapter"
+repository = "https://github.com/jam1garner/network-reader"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+[lib]
+name = "network_reader"
